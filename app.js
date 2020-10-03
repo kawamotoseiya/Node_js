@@ -1,17 +1,16 @@
 const express = require('express');
+const app = express();
 require('dotenv').config();
 const env = process.env;
 const mysql = require('mysql');
-const app = express();
 
 app.use(express.static('public'));
 
-
 const connection = mysql.createConnection({
-  host: env.HOST,
-  user: env.USER,
-  password: env.PASSWORD,
-  database: env.DATABASE
+  host: 'localhost',
+  user: 'root',
+  password: 'Password@0000',
+  database: 'list_app'
 });
 
 
