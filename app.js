@@ -25,7 +25,7 @@ app.get('/index',(req, res) => {
 		'SELECT * FROM items',
 		(error, results) => {
 			res.render('index.ejs',{items: results});
-		});
+	});
 });
 app.get('/new', (req, res) => {
 	res.render('new.ejs');
@@ -39,6 +39,19 @@ app.post('/create', (req, res) => {
 	(error, results) => {
 		res.redirect('/index');
 	});
-	});
+});
+
+app.post('/delete/:id', (req, res) => {
+	connection.query(
+		'DELETE FROM items WHERE id = ?',
+		[req.params.id],
+		(error, results) => {
+			res.redirect('/index');
+		}
+		);
+});
+app.get('/edit/:id', (req, res) => {
+	res.render('edit.ejs');
+})
 
 app.listen(3000);
